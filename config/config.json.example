@@ -1,0 +1,7 @@
+{
+  "qq_email": "your_email@qq.com",
+  "qq_auth_code": "your_auth_code",
+  "deepseek_key": "your_deepseek_api_key",
+  "imap_server": "imap.qq.com",
+  "smtp_server": "smtp.qq.com"
+}
