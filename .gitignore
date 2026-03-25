@@ -49,3 +49,9 @@ logs/*.log
 
 # Plist files (macOS launch agents)
 *.plist
+
+# Releases (build artifacts)
+releases/
+dist/
+build/
+*.spec
