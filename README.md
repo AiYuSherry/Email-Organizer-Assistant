@@ -22,8 +22,12 @@
 
 | Platform | Download | Size |
 |----------|----------|------|
-| **🍎 macOS** | [Email-Organizer-Assistant-macOS.zip](https://github.com/AiYuSherry/Email-Organizer-Assistant/releases/latest) | ~15MB |
-| **🪟 Windows** | [Email-Organizer-Assistant-Windows.zip](https://github.com/AiYuSherry/Email-Organizer-Assistant/releases/latest) | ~12MB |
+| **🍎 macOS** (Apple Silicon) | [Email-Organizer-Assistant-macOS.zip](https://github.com/AiYuSherry/Email-Organizer-Assistant/releases/latest) | ~18MB |
+| **🪟 Windows** | [Build from source](#method-2-source-code) | - |
+| **🐧 Linux** | [Build from source](#method-2-source-code) | - |
+
+> ⚠️ **Windows/Linux users**: Currently only macOS binary is provided. Windows/Linux users need to [build from source](#method-2-source-code) or use Python directly.
+> <br>⚠️ **Windows/Linux 用户**: 目前仅提供 macOS 预编译版本。Windows/Linux 用户需要[从源码构建](#method-2-source-code)或直接使用 Python 运行。
 
 **3 Steps to Start:**
 1. Download the zip for your system
@@ -61,10 +65,10 @@
 
 ## 📦 Installation | 安装
 
-### Method 1: Download Pre-built Binary (Recommended) | 方式1：下载预编译版本（推荐）
+### Method 1: Download Pre-built Binary (macOS Only) | 方式1：下载预编译版本（仅 macOS）
 
-No Python installation required! Just download and run.
-<br>无需安装 Python！下载解压后即可运行。
+No Python installation required for macOS! Just download and run.
+<br>macOS 用户无需安装 Python！下载解压后即可运行。
 
 ```
 📁 Email-Organizer-Assistant-macOS/
@@ -74,10 +78,10 @@ No Python installation required! Just download and run.
 └── 🚀 点击启动.command  ← Double-click to start
 ```
 
-### Method 2: Source Code | 方式2：源代码运行
+### Method 2: Source Code (All Platforms) | 方式2：源代码运行（全平台）
 
-For developers who want to customize.
-<br>适合需要自定义的开发者。
+For Windows, Linux, or developers who want to customize.
+<br>适合 Windows、Linux 或需要自定义的开发者。
 
 ```bash
 # Clone repository | 克隆仓库
@@ -88,9 +92,26 @@ cd Email-Organizer-Assistant
 pip install -r requirements.txt
 
 # Run | 运行
-./start_mac.command      # macOS
-start_windows.bat        # Windows
+python launcher.py         # Interactive menu
+./start_mac.command        # macOS shortcut
+start_windows.bat          # Windows shortcut
 ```
+
+### Method 3: Build Your Own Binary | 方式3：自行构建可执行文件
+
+Build standalone executable for your platform:
+<br>为自己平台构建独立可执行文件：
+
+```bash
+# Install PyInstaller
+pip install pyinstaller
+
+# Build
+python build.py
+```
+
+> 📦 Output will be in `releases/` directory
+> <br>📦 构建结果会在 `releases/` 目录中
 
 ---
 
@@ -100,7 +121,7 @@ start_windows.bat        # Windows
 
 1. **Launch the app** | 启动程序
    - macOS: Double-click `点击启动.command`
-   - Windows: Double-click `点击启动.bat`
+   - Windows: Run `start_windows.bat`
 
 2. **Configure** | 配置
    - Enter QQ Email | 输入 QQ 邮箱
@@ -123,7 +144,7 @@ Just double-click the start script and select the function you need.
 ```
 Email-Organizer-Assistant/
 ├── 🚀 点击启动.command      # macOS Launcher
-├── 🚀 点击启动.bat          # Windows Launcher
+├── 🚀 点击启动.bat          # Windows Launcher (run with Python)
 ├── 📱 launcher.py           # Main launcher
 ├── 📁 src/                  # Source code
 ├── 📁 scripts/              # Deployment scripts

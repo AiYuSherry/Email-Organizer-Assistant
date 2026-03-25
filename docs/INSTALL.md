@@ -6,11 +6,13 @@
 
 前往 [Releases 页面](https://github.com/AiYuSherry/Email-Organizer-Assistant/releases) 下载对应系统的版本：
 
-| 系统 | 下载文件 | 大小 |
-|------|---------|------|
-| **macOS** | `Email-Organizer-Assistant-macOS.zip` | ~15MB |
-| **Windows** | `Email-Organizer-Assistant-Windows.zip` | ~12MB |
-| **Linux** | `Email-Organizer-Assistant-Linux.zip` | ~13MB |
+| 系统 | 下载文件 | 大小 | 说明 |
+|------|---------|------|------|
+| **🍎 macOS** (Apple Silicon) | `Email-Organizer-Assistant-macOS.zip` | ~18MB | M1/M2/M3 芯片 |
+| **🪟 Windows** | - | - | 需[自行构建](#自行构建) |
+| **🐧 Linux** | - | - | 需[自行构建](#自行构建) |
+
+> ⚠️ **注意**: 目前仅提供 macOS 预编译版本。Windows 和 Linux 用户请参考下方的"源代码运行"或"自行构建"说明。
 
 ---
 
@@ -42,38 +44,57 @@
 
 ## 🪟 Windows 用户使用说明
 
-### 第一步：下载解压
+### 方式一：源代码运行（推荐）
 
-1. 下载 `Email-Organizer-Assistant-Windows.zip`
-2. 右键 → 解压到当前文件夹
+**需要**: Python 3.7+
 
-### 第二步：首次配置
+```bash
+# 1. 克隆仓库
+git clone https://github.com/AiYuSherry/Email-Organizer-Assistant.git
+cd Email-Organizer-Assistant
 
-1. 打开文件夹，双击 **"点击启动.bat"**
-2. 首次运行会提示配置相关信息
+# 2. 安装依赖
+pip install -r requirements.txt
 
-### 第三步：日常使用
+# 3. 运行
+start_windows.bat
+```
 
-配置完成后，以后只需要：
-- 双击 **"点击启动.bat"**
-- 选择对应功能即可
+### 方式二：自行构建可执行文件
+
+```bash
+# 1. 安装 PyInstaller
+pip install pyinstaller
+
+# 2. 运行构建脚本
+python build.py
+
+# 3. 构建结果在 releases/ 目录中
+```
 
 ---
 
 ## 🐧 Linux 用户使用说明
 
-### 第一步：下载解压
+### 源代码运行
 
 ```bash
-wget https://github.com/AiYuSherry/Email-Organizer-Assistant/releases/download/v1.0/Email-Organizer-Assistant-Linux.zip
-unzip Email-Organizer-Assistant-Linux.zip
-cd Email-Organizer-Assistant-Linux
+# 1. 克隆仓库
+git clone https://github.com/AiYuSherry/Email-Organizer-Assistant.git
+cd Email-Organizer-Assistant
+
+# 2. 安装依赖
+pip3 install -r requirements.txt
+
+# 3. 运行
+python3 launcher.py
 ```
 
-### 第二步：运行
+### 自行构建
 
 ```bash
-./EmailOrganizer-Linux
+pip3 install pyinstaller
+python3 build.py
 ```
 
 ---
@@ -107,13 +128,23 @@ cd Email-Organizer-Assistant-Linux
 ### Windows - 定时运行
 
 1. 搜索 "任务计划程序"
-2. 创建基本任务，设置每天 23:30 运行
+2. 创建基本任务，设置每天 23:30 运行 `start_windows.bat`
+
+### Linux - 定时运行
+
+```bash
+# 编辑 crontab
+crontab -e
+
+# 添加定时任务（每天 23:30）
+30 23 * * * /usr/bin/python3 /path/to/Email-Organizer-Assistant/src/daily_summary.py
+```
 
 ---
 
 ## ❓ 常见问题
 
-### Q: 提示 "无法打开，因为无法验证开发者" (macOS)
+### Q: macOS 提示 "无法打开，因为无法验证开发者"
 
 **A:** 前往 系统偏好设置 → 安全性与隐私 → 通用 → 点击"仍要打开"
 
