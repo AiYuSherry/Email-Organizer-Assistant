@@ -65,7 +65,8 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='assets/icon.ico' if system == 'Windows' else 'assets/icon.icns',
+    # 暂时不使用自定义图标
+    # icon='assets/icon.ico' if system == 'Windows' else 'assets/icon.icns',
 )
 
 # macOS 打包为 .app 应用包
@@ -73,6 +74,7 @@ if system == 'Darwin':
     app = BUNDLE(
         exe,
         name='Email Organizer Assistant.app',
-        icon='assets/icon.icns',
+        # 暂时不使用自定义图标
+        # icon='assets/icon.icns',
         bundle_identifier='com.emailorganizer.app',
     )
